@@ -1,9 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { db } from "@/lib/prisma";
-import { Button } from "@/components/ui/button";
-import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
-import Image from "next/image";
+import RestaurantHeader from "./components/header";
 
 
 interface RestaurantMenuPageProps {
@@ -31,23 +29,14 @@ const RestaurantMenuPage = async ({
   }
   return (
     <div>
-      <div className="relative h-[250px] w-full">
-      <Button variant="secondary" size="icon" className="absolute left-4 top-4 z-50 rounded-full">
-   <ChevronLeftIcon/>
-      </Button>
-      
-      <Image src={restaurant?.coverImageUrl} alt={restaurant.name} fill className="object-cover" />
-      
-      <Button variant="secondary" size="icon" className="absolute right-4 top-4 z-50 rounded-full">
-      <ScrollTextIcon/> 
-      </Button> 
-      </div>
+      <RestaurantHeader restaurant={restaurant} />
     </div>
   );
 };
 
 export default RestaurantMenuPage;
 
+// renderisando um client component dentro do server component para voltar uma pagina usando hooks- dentro do menu criar uma pasta chamada componentes e um arquivo chamado header
 
 
 // http://localhost:3000/autoatendimento-lysena/menu?consumptionMethod=dine_in
