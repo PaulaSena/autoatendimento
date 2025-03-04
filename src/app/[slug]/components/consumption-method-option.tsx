@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface ConsumptionMethodOptionProps {
-  slug: string;
+  slug:string;
   imageUrl: string;
   imageAlt: string;
   buttonText: string;
@@ -32,7 +32,9 @@ const ConsumptionMethodOption = ({
           />
         </div>
         <Button variant="secondary" className="rounded-full" asChild>
+          
           <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
+           
             {buttonText}
           </Link>
         </Button>
