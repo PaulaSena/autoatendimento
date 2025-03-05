@@ -1,10 +1,11 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { MenuCategory, Prisma, Restaurant } from "@prisma/client";
+import { Prisma, Restaurant } from "@prisma/client";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
+import Products from "./products";
 
  //Join categorias e produtos  
 
@@ -21,21 +22,26 @@ interface RestaurantCategoriesProps{
     }>;
 }
 
+type MenuCategoryWithProducts = Prisma.MenuCategoryGetPayload<{
+    include:{products:true}
+}>;
+
 const RestaurantCategories = ({restaurant}:RestaurantCategoriesProps) => {
    
    //criar usestate para armazenar a categoria e não precisar recarregar a pagina
-   const[selectedCategory, setSelectedCategory]=useState<MenuCategory>(restaurant.menuCategories[0])
+   const[selectedCategory, setSelectedCategory]=useState<MenuCategoryWithProducts>
+   (restaurant.menuCategories[0])
    //Clicar em uma categoria e selecionar ela
-   const handleCategoryClick=(category:MenuCategory)=>{
+   const handleCategoryClick=(category:MenuCategoryWithProducts)=>{
     setSelectedCategory(category)
    }
-   const getCategoryButtonVariant=(category: MenuCategory)=>{
+   const getCategoryButtonVariant=(category: MenuCategoryWithProducts)=>{
     return selectedCategory.id === category.id?"default":"secondary" 
    }
 
    return ( 
 
-        <div className="relative z-50 mt-[-1rem] rounded-t-3xl border bg-white">
+        <div className="relative z-50 mt-[-1rem] rounded-t-3xl bg-white">
             <div className="p-5">
 
                 <div className="flex items-center gap-3 ">
@@ -68,6 +74,12 @@ const RestaurantCategories = ({restaurant}:RestaurantCategoriesProps) => {
                         </div>
                         <ScrollBar orientation="horizontal" className="pt-4"/>
                     </ScrollArea>
+
+                    {/* Renderizar products */}
+
+                    {/* Title categories */}
+                    <h3 className="px-2 pt-4 font-semibold">{selectedCategory.name}</h3>
+                    <Products products={selectedCategory.products}/>
 
             </div>
         </div>
