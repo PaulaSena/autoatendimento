@@ -12,11 +12,13 @@ interface RestaurantHeaderProps{
 
 const RestaurantHeader = ({restaurant}:RestaurantHeaderProps) => {
     const router =useRouter()
+    const handleBackClick =()=> router.back() 
     return (
             <div>
       <div className="relative h-[250px] w-full">
       <Button variant="secondary" size="icon" className="absolute left-4 top-4 z-50 rounded-full" 
-      onClick={()=>router.back()}>
+      onClick={handleBackClick} // chamando a funcao voltar
+      >
    
    <ChevronLeftIcon/>
       </Button>
@@ -29,7 +31,8 @@ const RestaurantHeader = ({restaurant}:RestaurantHeaderProps) => {
       </div>
     </div>
       );
-      // receber a imagem como props interface direto do prisma, para usar o hooks e voltar pra pagina home
 }
  
 export default RestaurantHeader;
+      // receber a imagem como props interface direto do prisma, para usar o hooks e voltar pra pagina home
+     // No use cliente não posso importar um server component
