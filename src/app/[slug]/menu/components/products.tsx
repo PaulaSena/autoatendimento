@@ -8,7 +8,7 @@ import { formatCurrency } from "@/helpers/format-currency";
 interface ProductsProps {
   products: Product[];
 }
-
+ 
 const Products = ({ products }: ProductsProps) => {
   const { slug } = useParams<{ slug: string }>();
   return (

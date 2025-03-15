@@ -29,8 +29,8 @@ const ProductPage = async ({ params }: ProductPageProps) => {
   if (product.restaurant.slug.toUpperCase() !== slug.toUpperCase()) {
     return notFound();
   }
-  return (
-    <div className="flex h-full flex-col">
+  return (// para manter fixo o scroll e habilitar p scrol area
+    <div className="flex h-full flex-col fixed">
       <ProductHeader product={product} />
       <ProductDetails product={product} />
     </div>

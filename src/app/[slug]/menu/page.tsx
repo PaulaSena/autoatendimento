@@ -34,7 +34,7 @@ const RestaurantMenuPage = async ({
   if (!restaurant) {
     return notFound();
   }
-  return (
+  return ( // para manter fixo o scroll e habilitar p scrol area
     <div>
       <RestaurantHeader restaurant={restaurant} />
       <RestaurantCategories restaurant={restaurant} />
