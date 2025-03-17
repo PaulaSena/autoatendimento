@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "./[slug]/menu/contexts/cart";
 
 
 
@@ -24,8 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-<h1> by PaulaSena</h1>
-<main>{children}</main>
+        <CartProvider>
+          <main>
+            <h1> by PaulaSena</h1>
+              {children}
+          </main>
+        </CartProvider>
       </body>
     </html>
   );
