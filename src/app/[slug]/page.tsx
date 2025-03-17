@@ -51,6 +51,7 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
           imageUrl="/takeaway.png"
         />
       </div>
+      <div className="p-12 font-semibold ring-offset-rose-900"> Paula Sena</div>
     </div>
   );
 };
