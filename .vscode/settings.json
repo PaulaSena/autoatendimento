@@ -14,5 +14,6 @@
     "source.fixAll.eslint": "explicit"
   },
   "WillLuke.nextjs.addTypesOnSave": true,
-  "WillLuke.nextjs.hasPrompted": true
+  "WillLuke.nextjs.hasPrompted": true,
+  "editor.formatOnSave": true
 }
