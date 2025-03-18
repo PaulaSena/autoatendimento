@@ -125,7 +125,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         </div>
 
       {/* SACOLA */}
-        <Button className="mt-2 mb-4 -w-full rounded-full" onClick={handleAddToCart}>
+        <Button className="mt-2 -w-full rounded-full" onClick={handleAddToCart}>
           Adicionar à sacola
         </Button>
         </div>
