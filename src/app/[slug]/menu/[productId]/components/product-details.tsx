@@ -1,17 +1,17 @@
-"use client";
- 
-import { Prisma } from "@prisma/client";
-import { ChefHatIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import Image from "next/image";
-import { useContext, useState } from "react";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { formatCurrency } from "@/helpers/format-currency";
+import { Prisma } from '@prisma/client';
+import { ChefHatIcon, ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import Image from 'next/image';
+import { useContext, useState } from 'react';
 
-import CartSheet from "../../components/cart-sheet";
-import { CartContext } from "../../contexts/cart";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
+import { formatCurrency } from '@/helpers/format-currency';
 
+import CartSheet from '../../components/cart-sheet';
+import { CartContext } from '../../contexts/cart';
 
 interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{
@@ -26,7 +26,10 @@ interface ProductDetailsProps {
   }>;
 }
 const ProductDetails = ({ product }: ProductDetailsProps) => {
-  const { toggleCart, addProduct } = useContext(CartContext);{/*chamando a função do componente context*/}
+  const { toggleCart, addProduct, total } = useContext(CartContext);
+  {
+    /*chamando a função do componente context e o total*/
+  }
   const [quantity, setQuantity] = useState<number>(1);
   const handleDecreaseQuantity = () => {
     setQuantity((prev) => {
@@ -52,7 +55,6 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     <>
       <div className="relative z-50 h-full mt-[-1.5rem] flex flex-auto flex-col overflow-hidden rounded-t-3xl p-5">
         <div className="flex-auto overflow-hidden ">
-         
           {/* RESTAURANTE */}
           <div className="flex items-center gap-1.5">
             <Image
@@ -94,14 +96,15 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </div>
           </div>
 
-          <ScrollArea className="h-full mt-2" >{/* stroll apenas dentro do elemento */}
-           
+          <ScrollArea className="h-full mt-2">
+            {/* stroll apenas dentro do elemento */}
+
             {/* SOBRE */}
             <div className="mt-6 space-y-3">
               <h4 className="font-semibold">Sobre</h4>
               <p className="text-sm text-muted-foreground">
                 {product.description}
-              </p> 
+              </p>
             </div>
 
             {/* INGREDIENTS */}
@@ -116,23 +119,27 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                 ))}
               </ul>
             </div>
-              <ScrollBar orientation="vertical" />
-
+            <ScrollBar orientation="vertical" />
           </ScrollArea>
-
-    
-
         </div>
+        {/* Total */}
+        <Card className="mb-3">
+          <CardContent className="p-5">
+            <div className="flex justify-between">
+              <p className="text-sm text-muted-foreground">Total </p>
+              <p className="text-sm font-semibold">{formatCurrency(total)}</p>
+            </div>
+          </CardContent>
+        </Card>
 
-      {/* SACOLA */}
+        {/* SACOLA */}
         <Button className="mt-2 -w-full rounded-full" onClick={handleAddToCart}>
           Adicionar à sacola
         </Button>
-        </div>
+      </div>
 
-      <CartSheet />{/* Renderixando o componente do carrinho lateral */}
-
- 
+      <CartSheet />
+      {/* Renderixando o componente do carrinho lateral */}
     </>
   );
 };
