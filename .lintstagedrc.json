@@ -1,3 +1,4 @@
 {
-  "*.ts?(x)": ["eslint --fix", "prettier --write --loglevel warn"]
+  "*.ts?(x)": ["eslint --fix", "prettier --write --loglevel warn"],
+  "*.tsx": ["prettier --write --loglevel warn"]
 }

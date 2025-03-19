@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
 
-import { db } from "@/lib/prisma";
+import { db } from '@/lib/prisma';
 
-import RestaurantCategories from "./components/categories";
-import RestaurantHeader from "./components/header";
+import RestaurantCategories from './components/categories';
+import RestaurantHeader from './components/header';
 
 interface RestaurantMenuPageProps {
   params: Promise<{ slug: string }>;
@@ -11,7 +11,7 @@ interface RestaurantMenuPageProps {
 }
 
 const isConsumptionMethodValid = (consumptionMethod: string) => {
-  return ["DINE_IN", "TAKEAWAY"].includes(consumptionMethod.toUpperCase());
+  return ['DINE_IN', 'TAKEAWAY'].includes(consumptionMethod.toUpperCase());
 };
 
 const RestaurantMenuPage = async ({
@@ -34,7 +34,8 @@ const RestaurantMenuPage = async ({
   if (!restaurant) {
     return notFound();
   }
-  return ( // para manter fixo o scroll e habilitar p scrol area
+  return (
+    // para manter fixo o scroll e habilitar p scrol area
     <div>
       <RestaurantHeader restaurant={restaurant} />
       <RestaurantCategories restaurant={restaurant} />

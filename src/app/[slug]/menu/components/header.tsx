@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { Restaurant } from "@prisma/client";
-import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { Restaurant } from '@prisma/client';
+import { ChevronLeftIcon, ScrollTextIcon } from 'lucide-react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 
 interface RestaurantHeaderProps {
-  restaurant: Pick<Restaurant, "name" | "coverImageUrl">;
+  restaurant: Pick<Restaurant, 'name' | 'coverImageUrl'>;
 }
 
 const RestaurantHeader = ({ restaurant }: RestaurantHeaderProps) => {

@@ -1,9 +1,9 @@
-import { notFound } from "next/navigation";
+import { notFound } from 'next/navigation';
 
-import { db } from "@/lib/prisma";
+import { db } from '@/lib/prisma';
 
-import ProductDetails from "./components/product-details";
-import ProductHeader from "./components/product-header";
+import ProductDetails from './components/product-details';
+import ProductHeader from './components/product-header';
 
 interface ProductPageProps {
   params: Promise<{ slug: string; productId: string }>;
@@ -29,7 +29,8 @@ const ProductPage = async ({ params }: ProductPageProps) => {
   if (product.restaurant.slug.toUpperCase() !== slug.toUpperCase()) {
     return notFound();
   }
-  return (// para manter fixo o scroll e habilitar p scrol area
+  return (
+    // para manter fixo o scroll e habilitar p scrol area
     <div className="flex h-full flex-col fixed">
       <ProductHeader product={product} />
       <ProductDetails product={product} />

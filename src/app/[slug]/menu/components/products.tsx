@@ -1,14 +1,14 @@
-import { Product } from "@prisma/client";
-import Image from "next/image";
-import Link from "next/link";
-import { useParams } from "next/navigation";
+import { Product } from '@prisma/client';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
-import { formatCurrency } from "@/helpers/format-currency";
+import { formatCurrency } from '@/helpers/format-currency';
 
 interface ProductsProps {
   products: Product[];
 }
- 
+
 const Products = ({ products }: ProductsProps) => {
   const { slug } = useParams<{ slug: string }>();
   return (

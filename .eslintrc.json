@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended" // Isso garante que o Prettier e ESLint não entrem em conflito
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error" // Trata os erros do Prettier como erros de ESLint
+  }
+}
