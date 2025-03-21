@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
-
 interface ProductHeaderProps {
   product: Pick<Product, 'name' | 'imageUrl'>;
 }
@@ -14,8 +13,10 @@ interface ProductHeaderProps {
 const ProductHeader = ({ product }: ProductHeaderProps) => {
   const router = useRouter();
   const handleBackClick = () => router.back();
+
   return (
     <div className="relative min-h-[300px] w-full">
+      {/* Voltar */}
       <Button
         variant="secondary"
         size="icon"
@@ -31,7 +32,7 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
         fill
         className="object-contain"
       />
-
+      {/* abrir sacola */}
       <Button
         variant="secondary"
         size="icon"

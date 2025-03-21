@@ -1,5 +1,7 @@
 'Use client';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Loader2Icon } from 'lucide-react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { PatternFormat } from 'react-number-format';
 import { z } from 'zod';
@@ -36,15 +38,23 @@ const formSchema = z.object({
   cpf: z
     .string()
     .trim()
-    .min(5)
+    .min(5, {
+      message: 'O CPF é obrigatório.',
+    })
     .refine((value) => isValidCpf(value), {
-      message: 'CPF invalido.',
+      message: 'CPF inválido.',
     }),
 });
 
 type formSchema = z.infer<typeof formSchema>;
 
-const FinishOrderButton = () => {
+interface FinishOrderDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+const FinishOrderDialog = ({ open, onOpenChange }: FinishOrderDialogProps) => {
+  const [isLoading] = useState(false);
   const form = useForm<formSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,17 +62,16 @@ const FinishOrderButton = () => {
       cel: '',
       cpf: '',
     },
+    shouldUnregister: true,
   });
 
-  const onsubmit = (data: formSchema) => {
+  const onSubmit = async (data: formSchema) => {
     console.log({ data });
   };
 
   return (
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button className="w-full rounded-full "> Finalizar pedido</Button>
-      </DrawerTrigger>
+    <Drawer open={open} onOpenChange={onOpenChange}>
+      <DrawerTrigger asChild></DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle className="flex justify-center">
@@ -76,7 +85,7 @@ const FinishOrderButton = () => {
         <div className="p-10">
           <Form {...form}>
             <form
-              onSubmit={form.handleSubmit(onsubmit)}
+              onSubmit={form.handleSubmit(onSubmit)}
               className="w-full rounded-full space-y-8"
             >
               <FormField
@@ -129,13 +138,22 @@ const FinishOrderButton = () => {
               />
               <DrawerFooter>
                 <div className="flex justify-between">
-                  <DrawerClose asChild className="shadow-slate-500">
-                    <Button className="w-55 rounded-full" variant="destructive">
-                      {' '}
-                      Cancelar{' '}
+                  <DrawerClose asChild className="shadow-2xl">
+                    <Button
+                      className="mr-2 w-40 rounded-full"
+                      variant="destructive"
+                    >
+                      Cancelar
                     </Button>
                   </DrawerClose>
-                  <Button className="w-80  rounded-full" type="submit">
+
+                  <Button
+                    type="submit"
+                    variant="outline"
+                    className=" shadow-slate-300 w-full rounded-full bg-lime-600 text-slate-200"
+                    disabled={isLoading}
+                  >
+                    {isLoading && <Loader2Icon className="animate-ping" />}
                     Finalizar
                   </Button>
                 </div>
@@ -148,4 +166,4 @@ const FinishOrderButton = () => {
   );
 };
 
-export default FinishOrderButton;
+export default FinishOrderDialog;
