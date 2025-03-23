@@ -5,9 +5,8 @@ import { ConsumptionMethod } from "@prisma/client";
 import { Loader2Icon } from "lucide-react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useContext, useState } from "react";
-import { PatternFormat } from "react-number-format";
-
 import { useForm } from "react-hook-form";
+import { PatternFormat } from "react-number-format";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
