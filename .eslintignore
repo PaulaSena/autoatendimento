@@ -1,0 +1,7 @@
+tailwind.config.ts
+node_modules/
+.next/
+dist/
+.vercel/
+prisma/
+public/
